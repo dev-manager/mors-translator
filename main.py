@@ -1,34 +1,31 @@
 from pyperclip import copy
+import sys
 
 etm = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..'}
 mte = {'.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z'}
 
 while True:
-    mode = input('type mode \n(E)nglish to mors \n(M)ors to english\ne(X)it\n')
-    if mode == 'E' or mode == 'e':
+    mode = sys.argv[1]
+    if mode == '-E' or mode == '-e':
         result = ''
-        print('Please type english sentence : \n')
-        sentence = input('').upper()
-        for i in sentence:
-            if i == ' ':
-                pass
-            else:
-                result = result + etm.get(i) + ' '
+        sentence = sys.argv[2]
+        for j in sys.argv[2:]:
+            for i in j:
+                i = i.upper()
+                result += etm.get(i) + ' '
         print(result)
         copy(result)
         print('mors is copied')
         sentence = ''
-    elif mode == 'M' or mode == 'm':
+        break
+    elif mode == '-M' or mode == '-m':
         result = ''
-        print('Please type mors sentence : \n')
-        sentence = input('').upper()
+        sentence = sys.argv[2:]
         for i in sentence:
-            if i == '':
-                pass
+            if i == ' ':
+                result += ' '
             else:
                 result += mte.get(i)
-        print(result)
+        print(result.capitalize())
         sentence = ''
-    else:
         break
-    break
