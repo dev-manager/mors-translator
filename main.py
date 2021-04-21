@@ -30,4 +30,5 @@ while True:
         print(result)
         sentence = ''
     else:
-        exit(1)
+        break
+    break
