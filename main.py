@@ -22,10 +22,7 @@ while True:
         result = ''
         sentence = sys.argv[2:]
         for i in sentence:
-            if i == ' ':
-                result += ' '
-            else:
-                result += mte.get(i)
+            result += mte.get(i)
         print(result.capitalize())
         sentence = ''
         break
